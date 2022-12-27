@@ -73,15 +73,7 @@ jobs:
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker ps'
-
-      - name: Login GCR
-        run: |-
-          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=/home/officervermilion5674/key.json
-
-      - name: Login docker
-        run: |-
-          gcloud auth configure-docker
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'gcloud auth configure-docker'
 
       - name: Connect GCE
         run: |-
