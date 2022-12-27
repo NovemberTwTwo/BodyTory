@@ -77,8 +77,8 @@ jobs:
           --command='gcloud auth configure-docker' \
           --command='docker pull gcr.io/$PROJECT_ID/next' \
           --command='docker pull gcr.io/$PROJECT_ID/flask' \
-          --command='docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next' \
-          --command='docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask'
+          --command='docker run -d gcr.io/$PROJECT_ID/next' \
+          --command='docker run -d gcr.io/$PROJECT_ID/flask'
 
       # - name: Connect GCE
       #   run: |-
