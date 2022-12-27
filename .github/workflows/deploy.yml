@@ -77,7 +77,7 @@ jobs:
 
       - name: Login GCR
         run: |-
-          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=key.json
+          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=/home/officervermilion5674/key.json
 
       - name: Login docker
         run: |-
@@ -85,19 +85,19 @@ jobs:
 
       - name: Connect GCE
         run: |-
-          sudo docker pull gcr.io/$PROJECT_ID/next
+          docker pull gcr.io/$PROJECT_ID/next
 
       - name: Connect GCE
         run: |-
-          sudo docker pull gcr.io/$PROJECT_ID/flask
+          docker pull gcr.io/$PROJECT_ID/flask
 
       - name: Connect GCE
         run: |-
-          sudo docker run -d gcr.io/$PROJECT_ID/next
+          docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next
 
       - name: Connect GCE
         run: |-
-          sudo docker run -d gcr.io/$PROJECT_ID/flask
+          docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask
 
       # - name: Docker pull
       #   run: |-
