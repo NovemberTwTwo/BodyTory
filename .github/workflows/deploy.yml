@@ -73,10 +73,6 @@ jobs:
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone --command="$GCE_INSTANCE_ZONE"
-
-      - name: Connect GCE
-        run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone --command='gcloud auth configure-docker'
 
       - name: Connect GCE
