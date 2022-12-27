@@ -47,33 +47,33 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
-      # - name: Build
-      #   run: |-
-      #     docker-compose up -d --build
+      - name: Build
+        run: |-
+          docker-compose up -d --build
 
-      # - name: Docker list check
-      #   run: |-
-      #     docker images
+      - name: Docker list check
+        run: |-
+          docker images
 
-      # - name: Docker tagging
-      #   run: |-
-      #     docker tag next gcr.io/$PROJECT_ID/next
+      - name: Docker tagging
+        run: |-
+          docker tag next gcr.io/$PROJECT_ID/next
 
-      # - name: Docker tagging
-      #   run: |-
-      #     docker tag flask gcr.io/$PROJECT_ID/flask
+      - name: Docker tagging
+        run: |-
+          docker tag flask gcr.io/$PROJECT_ID/flask
 
-      # - name: Docker push to GCR
-      #   run: |-
-      #     docker push gcr.io/$PROJECT_ID/next
+      - name: Docker push to GCR
+        run: |-
+          docker push gcr.io/$PROJECT_ID/next
 
-      # - name: Docker push to GCR
-      #   run: |-
-      #     docker push gcr.io/$PROJECT_ID/flask
+      - name: Docker push to GCR
+        run: |-
+          docker push gcr.io/$PROJECT_ID/flask
 
       - name: Connect GCE
         run: |
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'docker-compose up -d --build'
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'docker pull gcr.io/$PROJECT_ID/next' -- 'docker pull gcr.io/$PROJECT_ID/flask' -- 'docker run gcr.io/$PROJECT_ID/next' -- 'docker run gcr.io/$PROJECT_ID/flask'
 
       # - name: Docker pull
       #   run: |-
