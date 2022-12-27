@@ -17,6 +17,19 @@ jobs:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      COOKIE_PASSWORD: ${{ secrets.COOKIE_PASSWORD }}
+      MAIL_ID: ${{ secrets.MAIL_ID }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+      NEXT_PUBLIC_NAVER_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }}
+      NEXT_PUBLIC_NAVER_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_SECRET }}
+      NEXT_PUBLIC_KAKAO_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_KEY }}
+      REGION: ${{ secrets.REGION }}
+      CF_ID: ${{ secrets.CF_ID }}
+      CF_TOKEN: ${{ secrets.CF_TOKEN }}
+      NEXT_PUBLIC_IMG_URL: ${{ secrets.NEXT_PUBLIC_IMG_URL }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -29,10 +42,6 @@ jobs:
 
       - run: |-
           gcloud --quiet auth configure-docker
-
-      - name: Setup .env
-        run: |-
-          echo -e "{{ secrets.ENV_FILE }}" >> .env
 
       - name: Build
         run: |-
