@@ -8,39 +8,35 @@ env:
   GCE_INSTANCE_ZONE: ${{ secrets.GCE_INSTANCE_ZONE }}
   DOCKER_IMAGE_NAME: bodytory
 jobs:
-  build:
-    name: Build
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: create env file
-        run: |
-          touch .env
-          echo "${{ secrets.ENV_FILE }}" >> .env
-
-      - uses: 'google-github-actions/setup-gcloud@v0'
+      # Setup gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
+          version: '290.0.1'
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          export_default_credentials: true
 
+      # Configure Docker to use the gcloud command-line tool as a credential
+      # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
-
-      - name: Build Docker
-          docker-compose up -d --build
-
-      - run: |
-          gcloud auth configure-docker -q
-
-      - name: Push
+      # Build the Docker image
+      - name: Build
         run: |-
-          docker push "gcr.io/$PROJECT_ID/$DOCKER_IMAGE_NAME:$GITHUB_SHA"
-
+          docker-compose up -d --build
+      # Push the Docker image to Google Container Registry
+      - name: Publish
+        run: |-
+          docker push "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
       - name: Deploy
         run: |-
           gcloud compute instances update-container "$GCE_INSTANCE" \
-          --zone "$GCE_INSTANCE_ZONE" \
-          --container-image "gcr.io/$project_ID/$DOCKER_IMAGE_NAME:$GITHUB_SHA"
+            --zone "$GCE_INSTANCE_ZONE" \
+            --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
