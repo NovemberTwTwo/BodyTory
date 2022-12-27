@@ -97,11 +97,7 @@ jobs:
 
       - name: Remove useless images
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker rm next'
-
-      - name: Remove useless images
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker rm flask'
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker container prune -f'
 
       - name: Docker next image to container
         run: |-
