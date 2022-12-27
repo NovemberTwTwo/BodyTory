@@ -58,17 +58,19 @@ jobs:
       - name: Docker tagging
         run: |-
           docker tag next gcr.io/$GCP_PROJECT_ID/next
+
+      - name: Docker tagging
         run: |-
           docker tag flask gcr.io/$GCP_PROJECT_ID/flask
-      
+
       - name: Docker push to GCR
         run: |-
           docker push gcr.io/$GCP_PROJECT_ID/next
-      
+
       - name: Docker push to GCR
         run: |-
           docker push gcr.io/$GCP_PROJECT_ID/flask
-      
+
       - name: Docker pull
         run: |-
           docker pull gcr.io/$GCP_PROJECT_ID/next
@@ -76,7 +78,7 @@ jobs:
       - name: Docker pull
         run: |-
           docker pull gcr.io/$GCP_PROJECT_ID/flask
-      
+
       - name: Docker run
         run: |-
           docker run gcr.io/$GCP_PROJECT_ID/next
