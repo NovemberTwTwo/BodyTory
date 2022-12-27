@@ -11,7 +11,7 @@ const cookieOptions = {
   cookieName: "userSession",
   password: process.env.COOKIE_PASSWORD!,
   cookieOptions: {
-    maxAge: 60 * 60 * 3,
+    maxAge: 60 * 60 * 8,
   },
 };
 export function withApiSession(fn: any) {
