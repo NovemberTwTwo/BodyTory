@@ -47,82 +47,50 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
-      # - name: Build
-      #   run: |-
-      #     docker-compose up -d --build
+      - name: Build
+        run: |-
+          docker-compose up -d --build
 
-      # - name: Docker list check
-      #   run: |-
-      #     docker images
+      - name: Docker list check
+        run: |-
+          docker images
 
-      # - name: Docker tagging
-      #   run: |-
-      #     docker tag next gcr.io/$PROJECT_ID/next
+      - name: Docker tagging
+        run: |-
+          docker tag next gcr.io/$PROJECT_ID/next
 
-      # - name: Docker tagging
-      #   run: |-
-      #     docker tag flask gcr.io/$PROJECT_ID/flask
+      - name: Docker tagging
+        run: |-
+          docker tag flask gcr.io/$PROJECT_ID/flask
 
-      # - name: Docker push to GCR
-      #   run: |-
-      #     docker push gcr.io/$PROJECT_ID/next
+      - name: Docker push to GCR
+        run: |-
+          docker push gcr.io/$PROJECT_ID/next
 
-      # - name: Docker push to GCR
-      #   run: |-
-      #     docker push gcr.io/$PROJECT_ID/flask
+      - name: Docker push to GCR
+        run: |-
+          docker push gcr.io/$PROJECT_ID/flask
 
       - name: Connect GCE
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='gcloud auth configure-docker'
 
-      - name: Connect GCE
+      - name: GCE usermod set
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='sudo usermod -a -G docker $USER'
 
-      - name: Connect GCE
+      - name: Pull next GCR image
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker pull gcr.io/alien-span-372906/next'
 
-      - name: Connect GCE
+      - name: Pull flask GCR image
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker pull gcr.io/alien-span-372906/flask'
 
-      - name: Connect GCE
+      - name: Docker next image to container
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run -p 3000:3000/tcp -d gcr.io/alien-span-372906/next'
 
-      - name: Connect GCE
+      - name: Docker flask image to container
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run -p 8080:8080/tcp -d gcr.io/alien-span-372906/flask'
-
-      # - name: Connect GCE
-      #   run: |-
-      #     docker pull gcr.io/$PROJECT_ID/next
-
-      # - name: Connect GCE
-      #   run: |-
-      #     docker pull gcr.io/$PROJECT_ID/flask
-
-      # - name: Connect GCE
-      #   run: |-
-      #     docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next
-
-      # - name: Connect GCE
-      #   run: |-
-      #     docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask
-
-      # - name: Docker pull
-      #   run: |-
-      #     docker pull gcr.io/$PROJECT_ID/next
-
-      # - name: Docker pull
-      #   run: |-
-      #     docker pull gcr.io/$PROJECT_ID/flask
-
-      # - name: Docker run
-      #   run: |-
-      #     docker run gcr.io/$PROJECT_ID/next
-
-      # - name: Docker run
-      #   run: |-
-      #     docker run gcr.io/$PROJECT_ID/flask
