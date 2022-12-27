@@ -77,19 +77,19 @@ jobs:
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker pull gcr.io/$PROJECT_ID/next'
+          sudo docker pull gcr.io/$PROJECT_ID/next
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker pull gcr.io/$PROJECT_ID/flask'
+          sudo docker pull gcr.io/$PROJECT_ID/flask
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker run -d gcr.io/$PROJECT_ID/next'
+          sudo docker run -d gcr.io/$PROJECT_ID/next
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker run -d gcr.io/$PROJECT_ID/flask'
+          sudo docker run -d gcr.io/$PROJECT_ID/flask
 
       # - name: Docker pull
       #   run: |-
