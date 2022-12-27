@@ -75,6 +75,7 @@ jobs:
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" \
           --command='gcloud auth configure-docker' \
+          --command='sudo usermod -a -G docker $USER' \
           --command='docker pull gcr.io/alien-span-372906/flask' \
           --command='docker pull gcr.io/alien-span-372906/flask' \
           --command='docker run -d gcr.io/alien-span-372906/next' \
