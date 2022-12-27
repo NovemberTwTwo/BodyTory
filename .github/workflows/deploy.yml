@@ -89,8 +89,8 @@ jobs:
 
       - name: Docker next image to container
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run -p 3000:3000/tcp -d gcr.io/alien-span-372906/next'
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run --name next --env-file=/usr/env/.env -p 3000:3000/tcp -d gcr.io/alien-span-372906/next'
 
       - name: Docker flask image to container
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run -p 8080:8080/tcp -d gcr.io/alien-span-372906/flask'
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run --name flask -p 8080:8080/tcp -d gcr.io/alien-span-372906/flask'
