@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ACCESSKEYID: ${{ secrets.ACCESSKEYID }}
+      AI_API_KEY: ${{ secrets.AI_API_KEY }}
+      SECRETACCESSKET: ${{ secrets.SECRETACCESSKET }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       COOKIE_PASSWORD: ${{ secrets.COOKIE_PASSWORD }}
       MAIL_ID: ${{ secrets.MAIL_ID }}
