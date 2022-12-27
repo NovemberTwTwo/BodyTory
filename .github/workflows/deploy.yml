@@ -73,23 +73,28 @@ jobs:
 
       - name: Connect GCE
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'gcloud auth configure-docker'
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" \
+          -- 'gcloud auth configure-docker' \
+          -- 'docker pull gcr.io/$PROJECT_ID/next' \
+          -- 'docker pull gcr.io/$PROJECT_ID/flask' \
+          -- 'docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next' \
+          -- 'docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask' \
 
-      - name: Connect GCE
-        run: |-
-          docker pull gcr.io/$PROJECT_ID/next
+      # - name: Connect GCE
+      #   run: |-
+      #     docker pull gcr.io/$PROJECT_ID/next
 
-      - name: Connect GCE
-        run: |-
-          docker pull gcr.io/$PROJECT_ID/flask
+      # - name: Connect GCE
+      #   run: |-
+      #     docker pull gcr.io/$PROJECT_ID/flask
 
-      - name: Connect GCE
-        run: |-
-          docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next
+      # - name: Connect GCE
+      #   run: |-
+      #     docker run -p 3000:3000/tcp -d gcr.io/$PROJECT_ID/next
 
-      - name: Connect GCE
-        run: |-
-          docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask
+      # - name: Connect GCE
+      #   run: |-
+      #     docker run -p 8080:8080/tcp -d gcr.io/$PROJECT_ID/flask
 
       # - name: Docker pull
       #   run: |-
