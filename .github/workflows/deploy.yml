@@ -87,6 +87,18 @@ jobs:
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker pull gcr.io/alien-span-372906/flask'
 
+      - name: Remove useless images
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
+
+      - name: Remove useless images
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker stop $(docker ps -a -q)'
+
+      - name: Remove useless images
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker container prune'
+
       - name: Docker next image to container
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run --name next --env-file=/usr/env/.env -p 3000:3000/tcp -d gcr.io/alien-span-372906/next'
