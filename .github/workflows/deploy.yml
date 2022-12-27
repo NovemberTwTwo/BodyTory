@@ -75,6 +75,14 @@ jobs:
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" -- 'sudo docker ps'
 
+      - name: Login GCR
+        run: |-
+          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
+
+      - name: Login docker
+        run: |-
+          gcloud auth configure-docker
+
       - name: Connect GCE
         run: |-
           sudo docker pull gcr.io/$PROJECT_ID/next
