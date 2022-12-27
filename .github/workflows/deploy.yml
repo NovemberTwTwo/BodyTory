@@ -77,7 +77,7 @@ jobs:
 
       - name: Login GCR
         run: |-
-          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
+          gcloud auth activate-service-account 212473395275-compute@developer.gserviceaccount.com --key-file=key.json
 
       - name: Login docker
         run: |-
