@@ -10,6 +10,7 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GCE_INSTANCE: ${{ secrets.GCE_INSTANCE }}
   GCE_INSTANCE_ZONE: ${{ secrets.GCE_INSTANCE_ZONE }}
+  GCR_AUTH: ${{ secrets.GCR_AUTH }}
   DOCKER_IMAGE_NAME: bodytory
 
 jobs:
@@ -54,6 +55,26 @@ jobs:
         run: |-
           docker images
 
-      - name: Test gcloud
+      - name: Docker tagging
         run: |-
-          gcloud compute instances list
+          docker tag next gcr.io/$GCP_PROJECT_ID/next
+        run: |-
+          docker tag flask gcr.io/$GCP_PROJECT_ID/flask
+      
+      - name: Docker push to GCR
+        run: |-
+          docker push gcr.io/$GCP_PROJECT_ID/next
+        run: |-
+          docker push gcr.io/$GCP_PROJECT_ID/flask
+      
+      - name: Docker pull
+        run: |-
+          docker pull gcr.io/$GCP_PROJECT_ID/next
+        run: |-
+          docker pull gcr.io/$GCP_PROJECT_ID/flask
+      
+      - name: Docker run
+        run: |-
+          docker run gcr.io/$GCP_PROJECT_ID/next
+        run: |-
+          docker run gcr.io/$GCP_PROJECT_ID/flask
