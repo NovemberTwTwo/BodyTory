@@ -75,10 +75,10 @@ jobs:
         run: |-
           gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" \
           --command='gcloud auth configure-docker' \
-          --command='docker pull gcr.io/$PROJECT_ID/next' \
-          --command='docker pull gcr.io/$PROJECT_ID/flask' \
-          --command='docker run -d gcr.io/$PROJECT_ID/next' \
-          --command='docker run -d gcr.io/$PROJECT_ID/flask'
+          --command='docker pull gcr.io/alien-span-372906/flask' \
+          --command='docker pull gcr.io/alien-span-372906/flask' \
+          --command='docker run -d gcr.io/alien-span-372906/next' \
+          --command='docker run -d gcr.io/alien-span-372906/flask'
 
       # - name: Connect GCE
       #   run: |-
