@@ -10,7 +10,7 @@ from gensim.models import Word2Vec
 
 
 app = Flask(__name__)
-CORS(app, resources={r'/api/*': {'origins':['http://kdt-ai5-team01.elicecoding.com', 'https://kdt-ai5-team01.elicecoding.com', 'http://localhost:3000', 'https://localhost:8080']}})
+CORS(app, resources={r'/api/*': {'origins':['http://bodytory.site', 'https://bodytory.site', 'http://localhost:3000', 'https://localhost:8080']}})
 
 okt = Okt()
 stopwords = ['의', '가', '이', '은', '들', '는', '좀', '잘', '걍', '과', '도', '를', '으로', '자', '에', '와', '한', '하다', '이다', ',', '"',

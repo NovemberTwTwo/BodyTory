@@ -5,7 +5,7 @@
 <img src="./next/public/bodytory_banner.png" width="400px" >
 </p>
 <p align="center">
-<a href="https://kdt-ai5-team01.elicecoding.com/">바디토리 체험하기!</a>
+<a href="https://bodytory.site/">바디토리 체험하기!</a>
 </p>
 <p align="center">
 <b>바디토리</b>는 <b>전국 모든 병원들과 연결되있다는 가정</b>하에<br/>     
@@ -59,7 +59,7 @@
 - 예전에 진료받았던 내용이 **기억나지 않아서** 아쉬웠던 적이 있으신가요?
 
 그렇다면 **바디토리**(Bodytory)에서 **내 몸의 증상**들을 부위별로 **기록하고**, **진료과**를 **추천**받아보세요!  
-<a href="https://kdt-ai5-team01.elicecoding.com/about/bodytory">바디토리 사용 방법 보러가기!
+<a href="https://bodytory.site/about/bodytory">바디토리 사용 방법 보러가기!
 </a>
 
 ### 바디토리는 이런 분들을 위해 만들어졌어요!

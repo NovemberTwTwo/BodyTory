@@ -6,9 +6,7 @@ const PersonalInformation = () => {
   return (
     <Article>
       <p className="ls2 lh6 bs5 ts4">
-        <em className="emphasis">
-          &lt; 바디토리 &gt;(&apos;kdt-ai5-team01.elicecoding.com&apos;이하 &apos;바디토리&apos;)
-        </em>
+        <em className="emphasis">&lt; 바디토리 &gt;(&apos;bodytory.site&apos;이하 &apos;바디토리&apos;)</em>
         은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게
         처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
       </p>
@@ -22,9 +20,7 @@ const PersonalInformation = () => {
           제1조(개인정보의 처리 목적)
           <br />
           <br />
-          <em className="emphasis">
-            &lt; 바디토리 &gt;(&apos;kdt-ai5-team01.elicecoding.com&apos;이하 &apos;바디토리&apos;)
-          </em>
+          <em className="emphasis">&lt; 바디토리 &gt;(&apos;bodytory.site&apos;이하 &apos;바디토리&apos;)</em>
           은(는) 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는
           이용되지 않으며 이용 목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한
           조치를 이행할 예정입니다.

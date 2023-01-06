@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="canonical" href="https://kdt-ai5-team01.elicecoding.com/" />
+          <link rel="canonical" href="https://bodytory.site/" />
           <meta
             property="og:image"
             content="https://imagedelivery.net/AbuMCvvnFZBtmCKKJV_e6Q/3103f60d-b28b-4425-d047-927327e5fb00/public"
