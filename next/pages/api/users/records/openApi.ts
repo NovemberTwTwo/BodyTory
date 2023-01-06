@@ -23,7 +23,7 @@ async function createRecord(req: NextApiRequest, res: NextApiResponse) {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: process.env.AI_API_KEY,
+        Authorization: `${process.env.AI_API_KEY}`,
       },
     },
   );

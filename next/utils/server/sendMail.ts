@@ -4,7 +4,7 @@ import email_authentication from "@public/static/email_authentication.png";
 
 const sendMail = (email: string, payload: string, subject: string) => {
   const mailOptions: MailOptions = {
-    from: process.env.MAIL_ID,
+    from: `${process.env.MAIL_ID}`,
     to: email,
     subject: "바디토리에서 인증번호가 왔어요!",
     html: `
