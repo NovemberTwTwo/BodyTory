@@ -49,15 +49,15 @@ jobs:
 
       - name: Sending files
         run: |-
-          gcloud compute scp docker-compose.yml "$GCE_INSTANCE":~/
+          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
 
       - name: Sending files
         run: |-
-          gcloud compute scp next "$GCE_INSTANCE":~/
+          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" next "$GCE_INSTANCE":~/
 
       - name: Sending files
         run: |-
-          gcloud compute scp flask "$GCE_INSTANCE":~/
+          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" flask "$GCE_INSTANCE":~/
 
       - name: Docker compose up
         run: |-
