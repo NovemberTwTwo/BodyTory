@@ -18,8 +18,6 @@ const NaverLoginBtn = ({ mutate, kind }: SocialBtnProps) => {
 
   const loadedNaverSdk = useCallback(() => {
     const naver = (window as any).naver;
-    console.log("Process ENV");
-    console.dir(process.env.NEXT_PUBLIC_NAVER_CLIENT_ID, { depth: 0 });
     let naverLogin: any;
     const login = () => {
       naverLogin = new naver.LoginWithNaverId({
