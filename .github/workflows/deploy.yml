@@ -50,62 +50,17 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
-      - name: Build
-        run: |-
-          docker-compose up -d
+      - run: |-
+          ls
 
-      - name: Docker list check
-        run: |-
-          docker images
+      # - name: Sending files
+      #   run: |-
+      #     gcloud compute scp . "$GCE_INSTANCE":~/
 
-      - name: Docker tagging
-        run: |-
-          docker tag next gcr.io/$PROJECT_ID/next
+      # - name: Docker compose up
+      #   run: |-
+      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
 
-      - name: Docker tagging
-        run: |-
-          docker tag flask gcr.io/$PROJECT_ID/flask
-
-      - name: Docker push to GCR
-        run: |-
-          docker push gcr.io/$PROJECT_ID/next
-
-      - name: Docker push to GCR
-        run: |-
-          docker push gcr.io/$PROJECT_ID/flask
-
-      - name: Connect GCE
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='gcloud auth configure-docker'
-
-      - name: GCE usermod set
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='sudo usermod -a -G docker $USER'
-
-      - name: Pull next GCR image
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker pull gcr.io/alien-span-372906/next'
-
-      - name: Pull flask GCR image
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker pull gcr.io/alien-span-372906/flask'
-
-      - name: Remove useless images
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
-
-      - name: Remove useless images
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker stop $(docker ps -a -q)'
-
-      - name: Remove useless images
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker container prune -f'
-
-      - name: Docker next image to container
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run --name next --env-file=/usr/env/.env -p 3000:3000/tcp -d gcr.io/alien-span-372906/next'
-
-      - name: Docker flask image to container
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker run --name flask -p 8080:8080/tcp -d gcr.io/alien-span-372906/flask'
+      # - name: Docker cleanup
+      #   run: |-
+      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
