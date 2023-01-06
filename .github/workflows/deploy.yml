@@ -58,6 +58,9 @@ jobs:
           echo -e "\nCF_ID="$CFID >> .env
           echo -e "\nCF_TOKEN="$CFTOKEN >> .env
           echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
+
+      - name: COPY env to next
+        run: |-
           chmod 777 .env
           cp .env next/
           ls -R
