@@ -65,7 +65,7 @@ jobs:
           echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
 
       - run: |
-          ls
+          ls -a
 
       # - name: Sending files
       #   run: |-
