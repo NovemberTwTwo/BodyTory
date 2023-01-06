@@ -38,14 +38,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
-      # - uses: google-github-actions/setup-gcloud@v0
-      #   with:
-      #     service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-      #     project_id: ${{ secrets.GCP_PROJECT_ID }}
-      #     export_default_credentials: true
+      - uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          export_default_credentials: true
 
-      # - run: |-
-      #     gcloud --quiet auth configure-docker
+      - run: |-
+          gcloud --quiet auth configure-docker
 
       - name: ENV render
         run: |-
@@ -63,24 +63,23 @@ jobs:
         run: |-
           chmod 777 .env
           cp .env next/
-          ls -R
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
 
-      # - name: Docker compose up
-      #   run: |-
-      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
+      - name: Docker compose up
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
 
-      # - name: Docker cleanup
-      #   run: |-
-      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
+      - name: Docker cleanup
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
