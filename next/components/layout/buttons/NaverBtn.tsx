@@ -21,7 +21,7 @@ const NaverLoginBtn = ({ mutate, kind }: SocialBtnProps) => {
     let naverLogin: any;
     const login = () => {
       naverLogin = new naver.LoginWithNaverId({
-        clientId: "AMIoA7XVZtAidCsDXAk5", // ClientID
+        clientId: `${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`, // ClientID
         callbackUrl: "https://bodytory.site/auth/login/loading", // Callback URL
         isPopup: false, // 팝업 형태로 인증 여부
         loginButton: {
