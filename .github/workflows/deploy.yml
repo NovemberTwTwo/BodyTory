@@ -38,31 +38,44 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
-      - uses: google-github-actions/setup-gcloud@v0
-        with:
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          export_default_credentials: true
+      # - uses: google-github-actions/setup-gcloud@v0
+      #   with:
+      #     service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+      #     project_id: ${{ secrets.GCP_PROJECT_ID }}
+      #     export_default_credentials: true
 
-      - run: |-
-          gcloud --quiet auth configure-docker
+      # - run: |-
+      #     gcloud --quiet auth configure-docker
 
-      - name: Sending files
+      - name: ENV render
         run: |-
-          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
+          echo -e "\nNEXT_PUBLIC_KAKAO_KEY="$KAKAO_KEY >> .env
+          echo -e "\nAI_API_KEY="$AI_KEY >> .env
+          echo -e "\nFLASK_API="$FLASK_API >> .env
+          echo -e "\nACCESSKEYID="$AC_ID >> .env
+          echo -e "\nSECRETACCESSKET="$SC_KET >> .env
+          echo -e "\nREGION="$REG >> .env
+          echo -e "\nCF_ID="$CFID >> .env
+          echo -e "\nCF_TOKEN="$CFTOKEN >> .env
+          echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
+          cp .env /next
 
-      - name: Sending files
-        run: |-
-          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
+      # - name: Sending files
+      #   run: |-
+      #     gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
 
-      - name: Sending files
-        run: |-
-          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
+      # - name: Sending files
+      #   run: |-
+      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
 
-      - name: Docker compose up
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
+      # - name: Sending files
+      #   run: |-
+      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
 
-      - name: Docker cleanup
-        run: |-
-          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
+      # - name: Docker compose up
+      #   run: |-
+      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
+
+      # - name: Docker cleanup
+      #   run: |-
+      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
