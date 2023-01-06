@@ -64,25 +64,26 @@ jobs:
           echo -e "\nCF_TOKEN="$CFTOKEN >> .env
           echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
 
-      - run: |
-          ls -a
+      - name: Sending files
+        run: |-
+          gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --zone "$GCE_INSTANCE_ZONE" docker-compose.yml "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./next "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
 
-      # - name: Sending files
-      #   run: |-
-      #     gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" ./flask "$GCE_INSTANCE":~/
+      - name: Sending files
+        run: |-
+          gcloud compute scp --recurse --zone "$GCE_INSTANCE_ZONE" .env "$GCE_INSTANCE":~/
 
-      # - name: Docker compose up
-      #   run: |-
-      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
+      - name: Docker compose up
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker-compose up -d --build'
 
-      # - name: Docker cleanup
-      #   run: |-
-      #     gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
+      - name: Docker cleanup
+        run: |-
+          gcloud compute ssh "$GCE_INSTANCE" --zone "$GCE_INSTANCE_ZONE" --command='docker image prune -f'
