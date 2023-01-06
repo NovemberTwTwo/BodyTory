@@ -61,7 +61,7 @@ jobs:
 
       - name: COPY env to next
         run: |-
-          chmod 777 .env
+          chmod 755 .env
           cp .env next/
 
       - name: Sending files
