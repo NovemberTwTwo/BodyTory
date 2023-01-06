@@ -19,20 +19,20 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ACCESSKEYID: '${{ secrets.ACCESSKEYID }}'
-      AI_API_KEY: '${{ secrets.AI_API_KEY }}'
-      SECRETACCESSKET: '${{ secrets.SECRETACCESSKET }}'
-      DATABASE_URL: '${{ secrets.DATABASE_URL }}'
-      COOKIE_PASSWORD: '${{ secrets.COOKIE_PASSWORD }}'
-      MAIL_ID: '${{ secrets.MAIL_ID }}'
-      MAIL_PASSWORD: '${{ secrets.MAIL_PASSWORD }}'
-      NEXT_PUBLIC_NAVER_CLIENT_ID: '${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }}'
-      NEXT_PUBLIC_NAVER_CLIENT_SECRET: '${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_SECRET }}'
-      NEXT_PUBLIC_KAKAO_KEY: '${{ secrets.NEXT_PUBLIC_KAKAO_KEY }}'
-      REGION: '${{ secrets.REGION }}'
-      CF_ID: '${{ secrets.CF_ID }}'
-      CF_TOKEN: '${{ secrets.CF_TOKEN }}'
-      NEXT_PUBLIC_IMG_URL: '${{ secrets.NEXT_PUBLIC_IMG_URL }}'
+      ACCESSKEYID: ${{ secrets.ACCESSKEYID }}
+      AI_API_KEY: ${{ secrets.AI_API_KEY }}
+      SECRETACCESSKET: ${{ secrets.SECRETACCESSKET }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      COOKIE_PASSWORD: ${{ secrets.COOKIE_PASSWORD }}
+      MAIL_ID: ${{ secrets.MAIL_ID }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+      NEXT_PUBLIC_NAVER_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }}
+      NEXT_PUBLIC_NAVER_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_SECRET }}
+      NEXT_PUBLIC_KAKAO_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_KEY }}
+      REGION: ${{ secrets.REGION }}
+      CF_ID: ${{ secrets.CF_ID }}
+      CF_TOKEN: ${{ secrets.CF_TOKEN }}
+      NEXT_PUBLIC_IMG_URL: ${{ secrets.NEXT_PUBLIC_IMG_URL }}
 
     steps:
       - name: Checkout
