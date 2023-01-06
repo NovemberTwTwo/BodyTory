@@ -58,7 +58,7 @@ jobs:
           echo -e "\nCF_ID="$CFID >> .env
           echo -e "\nCF_TOKEN="$CFTOKEN >> .env
           echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
-          cp .env /next
+          cp .env ./next
 
       # - name: Sending files
       #   run: |-
