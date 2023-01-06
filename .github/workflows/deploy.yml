@@ -49,15 +49,20 @@ jobs:
 
       - name: ENV render
         run: |-
-          echo -e "\nNEXT_PUBLIC_KAKAO_KEY="$KAKAO_KEY >> .env
-          echo -e "\nAI_API_KEY="$AI_KEY >> .env
-          echo -e "\nFLASK_API="$FLASK_API >> .env
-          echo -e "\nACCESSKEYID="$AC_ID >> .env
-          echo -e "\nSECRETACCESSKET="$SC_KET >> .env
-          echo -e "\nREGION="$REG >> .env
-          echo -e "\nCF_ID="$CFID >> .env
-          echo -e "\nCF_TOKEN="$CFTOKEN >> .env
-          echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_IMG >> .env
+          echo -e "\nACCESSKEYID="$ACCESSKEYID >> .env
+          echo -e "\nAI_API_KEY="$AI_API_KEY >> .env
+          echo -e "\nSECRETACCESSKET="$SECRETACCESSKET >> .env
+          echo -e "\nDATABASE_URL="$DATABASE_URL >> .env
+          echo -e "\nCOOKIE_PASSWORD="$COOKIE_PASSWORD >> .env
+          echo -e "\nMAIL_ID="$MAIL_ID >> .env
+          echo -e "\nMAIL_PASSWORD="$MAIL_PASSWORD >> .env
+          echo -e "\nNEXT_PUBLIC_NAVER_CLIENT_ID="$NEXT_PUBLIC_NAVER_CLIENT_ID >> .env
+          echo -e "\nNEXT_PUBLIC_NAVER_CLIENT_SECRET="$NEXT_PUBLIC_NAVER_CLIENT_SECRET >> .env
+          echo -e "\nNEXT_PUBLIC_KAKAO_KEY="$NEXT_PUBLIC_KAKAO_KEY >> .env
+          echo -e "\nREGION="$REGION >> .env
+          echo -e "\nCF_ID="$CF_ID >> .env
+          echo -e "\nCF_TOKEN="$CF_TOKEN >> .env
+          echo -e "\nNEXT_PUBLIC_IMG_URL="$NEXT_PUBLIC_IMG_URL >> .env
 
       - name: COPY env to next
         run: |-
